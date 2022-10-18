@@ -1,17 +1,30 @@
-import java.io.Serializable;
+import java.io.*;
 
 public class Student implements Serializable {
+
     private int roll;
     private float marks;
     private String name;
     private String hobbies;
+    private String email;
+
+    public static final int serialVersionUID = 1018090901;
 
     public Student(int roll, float marks, String name, String hobbies) {
         this.roll = roll;
         this.marks = marks;
         this.name = name;
         this.hobbies = hobbies;
+        email = "info@bitcode.in";
     }
+
+   public Student(int roll, float marks, String name, String hobbies, String email) {
+       this.roll = roll;
+       this.marks = marks;
+       this.name = name;
+       this.hobbies = hobbies;
+       this.email = email;
+   }
 
     @Override
     public String toString() {
@@ -20,6 +33,7 @@ public class Student implements Serializable {
                 ", marks=" + marks +
                 ", name='" + name + '\'' +
                 ", hobbies='" + hobbies + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -54,4 +68,6 @@ public class Student implements Serializable {
     public void setHobbies(String hobbies) {
         this.hobbies = hobbies;
     }
+
+
 }

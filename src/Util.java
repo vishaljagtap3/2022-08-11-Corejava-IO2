@@ -5,6 +5,37 @@ import java.util.Scanner;
 
 public class Util {
 
+    public static void externalizationDemo() {
+        Product p1 = new Product(
+                101,
+                "laptop",
+                10000.34f,
+                4.2f
+        );
+
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(
+                    new FileOutputStream(
+                            "/home/vishal/java/demos/products_data.bin"
+                    )
+            );
+            out.writeObject(p1);
+            out.close();
+
+            ObjectInputStream in = new ObjectInputStream(
+                    new FileInputStream("/home/vishal/java/demos/products_data.bin")
+            );
+            Product product = (Product) in.readObject();
+            System.out.println(product);
+            in.close();
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
     public static void serializationDemo() {
         Student s1 = new Student(11, 66.34f, "ABC", "Sports and Music");
 
@@ -15,7 +46,6 @@ public class Util {
                     );
 
             objectOutputStream.writeObject(s1);
-
             objectOutputStream.close();
         }
         catch (IOException e){
@@ -35,7 +65,7 @@ public class Util {
             objectInputStream.close();
         }
         catch (IOException e) {
-
+            e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

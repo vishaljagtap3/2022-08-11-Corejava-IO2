@@ -16,8 +16,10 @@ public class Main {
         //Util.scannerDemo();
         //System.err.println("this is an error line...");\
 
-        Util.serializationDemo();
-        Util.deSerializationDemo();
+        //Util.serializationDemo();
+        //Util.deSerializationDemo();
+
+        Util.externalizationDemo();
 
 
 
