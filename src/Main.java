@@ -19,9 +19,12 @@ public class Main {
         //Util.serializationDemo();
         //Util.deSerializationDemo();
 
-        Util.externalizationDemo();
+        //Util.externalizationDemo();
+        //Util.fileReaderWriterDemo();
 
+        //Util.inputStreamReaderWriterDemo();
 
+        Util.randomAccessFileDemo();
 
     }
 }

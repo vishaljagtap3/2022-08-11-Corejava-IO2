@@ -5,6 +5,101 @@ import java.util.Scanner;
 
 public class Util {
 
+    public static void randomAccessFileDemo() {
+        try {
+            RandomAccessFile raf = new RandomAccessFile("/home/vishal/java/demos/my_random.txt", "rw");
+            System.out.println("raf position : " + raf.getFilePointer());
+            raf.writeUTF("this is a string");
+            System.out.println("raf position : " + raf.getFilePointer());
+            raf.writeUTF("n");
+            System.out.println("raf position : " + raf.getFilePointer());
+            raf.writeInt(9034);
+            System.out.println("raf position : " + raf.getFilePointer());
+
+            raf.seek(0);
+            System.out.println("after seek raf position : " + raf.getFilePointer());
+
+            System.out.println(raf.readUTF());
+            System.out.println(raf.readInt());
+
+            System.out.println("raf position : " + raf.getFilePointer());
+
+            raf.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void inputStreamReaderWriterDemo() {
+        try {
+            FileOutputStream fout = new FileOutputStream("/home/vishal/java/demos/my_new_text_file.txt");
+            OutputStreamWriter writer = new OutputStreamWriter(fout);
+            writer.write("this is line 1\n");
+            writer.write("I love java and android\n");
+            writer.close();
+
+            FileInputStream fin = new FileInputStream("/home/vishal/java/demos/my_new_text_file.txt");
+            InputStreamReader reader = new InputStreamReader(fin);
+            int ch;
+            while( (ch = reader.read()) != -1) {
+                System.out.print((char)ch);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void fileReaderWriterDemo() {
+
+        try {
+            FileWriter fileWriter = new FileWriter("/home/vishal/java/demos/my_text_file.txt", true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter, 1024);
+
+            /*fileWriter.write('A');
+            char [] data = "this is a demo string".toCharArray();
+            fileWriter.write(data);
+            data = "\n I love java".toCharArray();
+            fileWriter.write(data, 0, 8);
+            fileWriter.write(" Android");
+            fileWriter.close();*/
+
+            bufferedWriter.write('A');
+            char [] data = "this is a demo string".toCharArray();
+            bufferedWriter.write(data);
+            data = "\n I love java".toCharArray();
+            bufferedWriter.write(data, 0, 8);
+            bufferedWriter.write(" Android");
+            bufferedWriter.close();
+
+            FileReader fileReader = new FileReader("/home/vishal/java/demos/my_text_file.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            int ch;
+            /*while( (ch = fileReader.read()) != -1) {
+                System.out.print((char)ch);
+            }
+            fileReader.close();*/
+
+           /* while( (ch = bufferedReader.read()) != -1) {
+                System.out.print((char)ch);
+            }*/
+            char [] arr = new char[16];
+            int count;
+            while( (count = bufferedReader.read(arr)) != -1) {
+                System.out.print(new String(arr, 0, count));
+            }
+            bufferedReader.close();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
     public static void externalizationDemo() {
         Product p1 = new Product(
                 101,
